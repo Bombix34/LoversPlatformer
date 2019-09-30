@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        characterControl.Move(movement.x * Time.fixedDeltaTime*reglages.moveSpeed,false,jump);
+        characterControl.Move(movement.x * Time.fixedDeltaTime * reglages.moveSpeed, false, jump);
         jump = false;
     }
 
@@ -49,5 +49,10 @@ public class PlayerManager : MonoBehaviour
         anim.SetBool("Run", characterControl.IsGrounded() && movement.x != 0);
         anim.SetBool("Jump", jump);
         anim.SetBool("Falling", characterControl.IsFalling());
+    }
+
+    void MovementUpdate()
+    {
+
     }
 }

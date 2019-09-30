@@ -153,6 +153,6 @@ public class CharacterController2D : MonoBehaviour
 
     public bool IsFalling()
     {
-        return m_Rigidbody2D.velocity.y < 0;
+        return m_Rigidbody2D.velocity.y < -0.1f&&!m_Grounded;
     }
 }

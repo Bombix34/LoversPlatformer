@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+
+    [SerializeField] bool isPlayer1;
     [SerializeField] PlayerSettings reglages;
     PlayerInputManager input;
     CharacterController2D characterControl;
@@ -41,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         if (input.GetSpecialInput())
             print("special");
         if (input.GetTeleportInput())
-            print("teleport");
+            TeleportAction();
     }
 
     void UpdateAnimator()
@@ -54,5 +56,22 @@ public class PlayerManager : MonoBehaviour
     void MovementUpdate()
     {
 
+    }
+
+    void TeleportAction()
+    {
+        Vector2 currentPosition = transform.position;
+        if (isPlayer1)
+        {
+            GameObject otherPlayer = GameManager.Instance.GetPlayer2().gameObject;
+            transform.position = otherPlayer.transform.position;
+            GameManager.Instance.GetPlayer2().transform.position = currentPosition;
+        }
+        else
+        {
+            GameObject otherPlayer = GameManager.Instance.GetPlayer1().gameObject;
+            transform.position = otherPlayer.transform.position;
+            GameManager.Instance.GetPlayer1().transform.position = currentPosition;
+        }
     }
 }

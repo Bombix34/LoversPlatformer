@@ -20,6 +20,8 @@ public class CharacterController2D : MonoBehaviour
 
     private Vector2 velocity;
 
+    private float saveMovementOnJump = 0f;
+
     [Header("Events")]
     [Space]
 
@@ -50,6 +52,7 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
+                saveMovementOnJump = 0;
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
             }
@@ -66,6 +69,8 @@ public class CharacterController2D : MonoBehaviour
             Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
             // And then smoothing it out and applying it to the character
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+            if (saveMovementOnJump != 0)
+                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + saveMovementOnJump * Time.fixedDeltaTime*10f, m_Rigidbody2D.velocity.y);
 
             // If the input is moving the player right and the player is facing left...
             if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
@@ -92,12 +97,13 @@ public class CharacterController2D : MonoBehaviour
         if (m_Grounded)
         {
             m_Grounded = false;
+            saveMovementOnJump = moveX*50f;
             // Add a vertical force to the player.
             if (reglages.JumpNuance)
             {
                 m_jumpTimeCounter = reglages.jumpInputTime;
 
-                m_Rigidbody2D.AddForce(new Vector2(Mathf.Pow(moveX * 10f, 2), reglages.jumpForce* reglages.jumpForce));
+                m_Rigidbody2D.AddForce(new Vector2(saveMovementOnJump, reglages.jumpForce),ForceMode2D.Impulse);
                // m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, reglages.jumpForce*Time.fixedDeltaTime);
             }
             else

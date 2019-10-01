@@ -97,8 +97,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 m_jumpTimeCounter = reglages.jumpInputTime;
 
-                m_Rigidbody2D.AddForce(new Vector2(0f, reglages.jumpForce* reglages.jumpForce));
-                StartCoroutine(TestCoroutine(moveX));
+                m_Rigidbody2D.AddForce(new Vector2(Mathf.Pow(moveX * 10f, 2), reglages.jumpForce* reglages.jumpForce));
                // m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, reglages.jumpForce*Time.fixedDeltaTime);
             }
             else
@@ -106,12 +105,6 @@ public class CharacterController2D : MonoBehaviour
                 m_Rigidbody2D.AddForce(new Vector2(0f, reglages.jumpForce));
             }
         }
-    }
-
-   IEnumerator TestCoroutine(float moveX)
-    {
-        yield return new WaitForSeconds(0.2f);
-        m_Rigidbody2D.AddForce(new Vector2(Mathf.Pow(moveX * 10f, 2), 0f));
     }
 
     private void Flip()

@@ -12,13 +12,16 @@ public class PlayerManager : MonoBehaviour
     Animator anim;
     Vector2 movement;
 
-    bool jump = false;
+    bool jumpTriggerAction = false;
+    bool isJumping = false;
+    bool jumpRelease = true;
 
     void Awake()
     {
         input = GetComponent<PlayerInputManager>();
         characterControl = GetComponent<CharacterController2D>();
         anim = GetComponent<Animator>();
+        characterControl.InitSettings(reglages);
     }
 
     void Update()
@@ -29,33 +32,48 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        characterControl.Move(movement.x * Time.fixedDeltaTime * reglages.moveSpeed, false, jump);
-        jump = false;
+        UpdatePhysics();
     }
 
     void UpdateInput()
     {
         movement = new Vector2(input.GetMovementInputX(),input.GetMovementInputY());
-        if (input.GetJumpInputDown())
+        if (input.GetJumpInput()&&jumpRelease)
         {
-            jump = true;
+            jumpTriggerAction = true;
+            isJumping = true;
+            jumpRelease = false;
+            characterControl.JumpAction(movement.x);
+        }
+        if(input.GetJumpInputUp())
+        {
+            jumpTriggerAction = false;
+            jumpRelease = true;
         }
         if (input.GetSpecialInput())
             print("special");
         if (input.GetTeleportInput())
-            TeleportAction();
+            print("Teleport");
     }
 
     void UpdateAnimator()
     {
         anim.SetBool("Run", characterControl.IsGrounded() && movement.x != 0);
-        anim.SetBool("Jump", jump);
+        anim.SetBool("Jump", isJumping);
         anim.SetBool("Falling", characterControl.IsFalling());
     }
 
-    void MovementUpdate()
+    void UpdatePhysics()
+    //fixed update
     {
-
+        if (characterControl.IsFalling())
+            isJumping = false;
+        if(reglages.AirControl)
+        {
+            if(isJumping || characterControl.IsFalling())
+                movement = new Vector2(movement.x * reglages.AirControlMultiplicator, movement.y);
+        }
+        characterControl.Move(movement.x * Time.fixedDeltaTime * reglages.moveSpeed, jumpTriggerAction);
     }
 
     void TeleportAction()

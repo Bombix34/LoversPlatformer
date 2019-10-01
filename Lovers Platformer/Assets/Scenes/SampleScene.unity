@@ -2657,7 +2657,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 50
   field of view: 60
   orthographic: 1
   orthographic size: 6
@@ -2713,6 +2713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450878317854009444, guid: e1848eaa52b19924cae3eac1edbcc01d,
+        type: 3}
+      propertyPath: isPlayer1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4450878317854009445, guid: e1848eaa52b19924cae3eac1edbcc01d,
         type: 3}
@@ -2814,11 +2819,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.499
       objectReference: {fileID: 0}
-    - target: {fileID: 4450878317854009444, guid: e1848eaa52b19924cae3eac1edbcc01d,
-        type: 3}
-      propertyPath: isPlayer1
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1848eaa52b19924cae3eac1edbcc01d, type: 3}
 --- !u!1001 &5304766911803670190
@@ -2832,6 +2832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384263628894173186, guid: 9648ba160be00a84794a790354f84155,
+        type: 3}
+      propertyPath: isPlayer1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8384263628894173187, guid: 9648ba160be00a84794a790354f84155,
         type: 3}
@@ -2899,10 +2904,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 6569ebc6af067eb4da49da425ccc9669,
         type: 2}
-    - target: {fileID: 8384263628894173186, guid: 9648ba160be00a84794a790354f84155,
+    - target: {fileID: 8384263628894173212, guid: 9648ba160be00a84794a790354f84155,
         type: 3}
-      propertyPath: isPlayer1
-      value: 0
+      propertyPath: m_Mass
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9648ba160be00a84794a790354f84155, type: 3}

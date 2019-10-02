@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
     private PlayerSettings reglages;
+    private PlayerManager manager;
     //[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
@@ -20,6 +21,8 @@ public class CharacterController2D : MonoBehaviour
 
     private Vector2 velocity;
 
+    private Vector2 DashDirection = Vector2.zero;
+
     private float saveMovementOnJump = 0f;
 
     [Header("Events")]
@@ -33,6 +36,7 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        manager = GetComponent<PlayerManager>();
         velocity = Vector2.zero;
 
         if (OnLandEvent == null)
@@ -115,7 +119,7 @@ public class CharacterController2D : MonoBehaviour
 
     public IEnumerator DashAction(Vector2 dirVector)
     {
-
+        DashDirection = dirVector;
         Vector2 tempDirection =dirVector;
         tempDirection.Normalize();
 
@@ -124,13 +128,24 @@ public class CharacterController2D : MonoBehaviour
         m_Rigidbody2D.velocity = new Vector2(tempDirection.x * reglages.moveSpeed, tempDirection.y * reglages.moveSpeed) * reglages.DashForce;
         /*float angle = Vector2.SignedAngle(Vector2.right, tempDirection);
         GetComponentInChildren<SpriteRenderer>().transform.Rotate(new Vector3(0.0f, 0.0f, angle));*/
-
-
-        //attendre la fin du dash
-        float dash = reglages.DashDuration;
+            //attendre la fin du dash
+       float dash = reglages.DashDuration;
         while (dash > 0)
         {
             dash -= Time.deltaTime;
+            //RAYCAST PENDANT LE DASH
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, dirVector, 0.7f);
+            foreach (var item in hit)
+            {
+                if (item.collider.gameObject != this.gameObject)
+                {
+                    if (manager.ObjectIsOtherPlayer(item.collider.gameObject))
+                    {
+                        dash = 0;
+                        manager.ContactWithOtherPlayerOnDash(dirVector);
+                    }
+                }
+            }
             yield return new WaitForSeconds(0.001f);
         }
         //_______________________
@@ -138,7 +153,7 @@ public class CharacterController2D : MonoBehaviour
         // isDashing = false;
         m_Rigidbody2D.velocity = Vector2.zero;
         m_Rigidbody2D.gravityScale = baseGravityScale;
-        GetComponent<PlayerManager>().SetIsDashing(false);
+        manager.SetIsDashing(false);
         //GetComponentInChildren<SpriteRenderer>().transform.rotation = Quaternion.identity;
         //dashChrono = reglages.dashCoolDown;
     }
@@ -167,5 +182,10 @@ public class CharacterController2D : MonoBehaviour
     public void InitSettings(PlayerSettings regl)
     {
         reglages = regl;
+    }
+
+    public Vector2 GetDashDirection()
+    {
+        return DashDirection;
     }
 }

@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     bool isDashing = false;
     [SerializeField] float forceDash;
+    float curCooldownDash;
 
 
     void Awake()
@@ -48,12 +49,6 @@ public class PlayerManager : MonoBehaviour
     {
         UpdateInput();
         UpdateAnimator();
-
-        /*
-        Vector2 dirVector = new Vector2(otherPlayer.transform.position.x - this.transform.position.x, otherPlayer.transform.position.y - this.transform.position.y);
-        dirVector.Normalize();
-        Debug.DrawLine (this.transform.position, this.transform.position+(Vector3)dirVector, Color.red, 0.01f);
-        */
     }
 
     private void FixedUpdate()
@@ -63,8 +58,12 @@ public class PlayerManager : MonoBehaviour
 
     void UpdateInput()
     {
+        //dash
         if (isDashing)
             return;
+        if (curCooldownDash > 0)
+            curCooldownDash -= Time.fixedDeltaTime;
+
         movement = new Vector2(input.GetMovementInputX(),input.GetMovementInputY());
         if (input.GetJumpInput()&&jumpRelease)
         {
@@ -80,10 +79,10 @@ public class PlayerManager : MonoBehaviour
         }
         if (input.GetSpecialInput())
             print("special");
-        if (input.GetTeleportInputDown())
-            {
-                DashAction();
-            }
+        if (input.GetTeleportInputDown()&&curCooldownDash<=0)
+        {
+            DashAction();
+        }
     }
 
     void UpdateAnimator()
@@ -110,39 +109,36 @@ public class PlayerManager : MonoBehaviour
 
     void DashAction()
     {
-
-        //StartCoroutine("MaCoroutine");
-        /*directionDash = (otherPlayer.transform.position - this.GetComponentInParent<Transform>().transform.position).normalized;
-
-        while(!collision)
-        {
-            
-            rigidbody.AddForce(directionDash * forceDash);
-        }*/
-
-
         //Switch
         isDashing = true;
+        curCooldownDash = reglages.DashCooldown;
         Vector2 dirVector =new Vector2 (otherPlayer.transform.position.x - this.transform.position.x , otherPlayer.transform.position.y-this.transform.position.y);
         StartCoroutine(characterControl.DashAction(dirVector));
     }
 
-    IEnumerator MaCoroutine()
-            {
-                Vector2 directionDash = directionDash = (otherPlayer.transform.position - this.GetComponentInParent<Transform>().transform.position).normalized;
-                this.rigidbody.isKinematic = true;
-                rigidbody.gravityScale = 0f;
-                this.rigidbody.isKinematic = false;
+    public void DashActionWithDirection(Vector2 dirVector)
+    {
+        isDashing = true;
+        StartCoroutine(characterControl.DashAction(dirVector));
+    }
 
-                while(!collision)
-                {
-                    
-                    rigidbody.AddForce(directionDash * forceDash);
-                    yield return new WaitForSeconds(0.01f);
-                }
-
-               rigidbody.gravityScale = 2f;
-            }
+    public void ContactWithOtherPlayerOnDash(Vector2 dashDir)
+    {
+        PlayerManager otherPlayerManager = otherPlayer.GetComponent<PlayerManager>();
+        if(otherPlayerManager.IsDashing())
+        {
+            print("dash vs dash");
+            if (!isPlayer1)
+                return;
+            DashActionWithDirection(otherPlayer.GetComponent<CharacterController2D>().GetDashDirection());
+            otherPlayerManager.DashActionWithDirection(dashDir);
+        }
+        else
+        {
+            print("idle vs dash");
+            otherPlayerManager.DashActionWithDirection(dashDir);
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -157,5 +153,15 @@ public class PlayerManager : MonoBehaviour
     public void SetIsDashing(bool newVal)
     {
         isDashing = newVal;
+    }
+
+    public bool IsDashing()
+    {
+        return isDashing;
+    }
+
+    public bool ObjectIsOtherPlayer(GameObject other)
+    {
+        return other == otherPlayer.gameObject;
     }
 }

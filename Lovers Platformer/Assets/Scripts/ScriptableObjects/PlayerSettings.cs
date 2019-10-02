@@ -22,4 +22,6 @@ public class PlayerSettings : ScriptableObject
     [Header("Réglages Dash")]
     public float DashForce = 500f;
     public float DashDuration = 0.3f;
+    [Range(0f, 5f)]
+    public float DashCooldown = 1f;
 }

@@ -49,6 +49,7 @@ public class PlayerManager : MonoBehaviour
     {
         UpdateInput();
         UpdateAnimator();
+        UpdateLineBetweenPlayer();
     }
 
     private void FixedUpdate()
@@ -105,6 +106,15 @@ public class PlayerManager : MonoBehaviour
         if (isDashing)
             return;
         characterControl.Move(movement.x * Time.fixedDeltaTime * reglages.moveSpeed, jumpTriggerAction);
+    }
+
+    void UpdateLineBetweenPlayer()
+    {
+        if (!isPlayer1)
+            return;
+        LineRenderer line = GetComponent<LineRenderer>();
+        line.SetPosition(0, this.transform.position);
+        line.SetPosition(1, otherPlayer.transform.position);
     }
 
     void DashAction()

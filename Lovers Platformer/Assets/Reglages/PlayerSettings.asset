@@ -18,5 +18,6 @@ MonoBehaviour:
   AirControlMultiplicator: 1
   jumpInputTime: 0.25
   JumpNuance: 1
-  DashForce: 0.6
-  DashDuration: 0.18
+  DashForce: 1
+  DashDuration: 0.1
+  DashCooldown: 1

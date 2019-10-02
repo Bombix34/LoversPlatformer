@@ -19,4 +19,7 @@ public class PlayerSettings : ScriptableObject
     public float jumpInputTime = 0.35f;
     public bool JumpNuance = false;
 
+    [Header("Réglages Dash")]
+    public float DashForce = 500f;
+    public float DashDuration = 0.3f;
 }

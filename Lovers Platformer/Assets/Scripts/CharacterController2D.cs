@@ -113,6 +113,36 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    public IEnumerator DashAction(Vector2 dirVector)
+    {
+
+        Vector2 tempDirection =dirVector;
+        tempDirection.Normalize();
+
+        float baseGravityScale = m_Rigidbody2D.gravityScale;
+        m_Rigidbody2D.gravityScale = 0f;
+        m_Rigidbody2D.velocity = new Vector2(tempDirection.x * reglages.moveSpeed, tempDirection.y * reglages.moveSpeed) * reglages.DashForce;
+        /*float angle = Vector2.SignedAngle(Vector2.right, tempDirection);
+        GetComponentInChildren<SpriteRenderer>().transform.Rotate(new Vector3(0.0f, 0.0f, angle));*/
+
+
+        //attendre la fin du dash
+        float dash = reglages.DashDuration;
+        while (dash > 0)
+        {
+            dash -= Time.deltaTime;
+            yield return new WaitForSeconds(0.001f);
+        }
+        //_______________________
+
+        // isDashing = false;
+        m_Rigidbody2D.velocity = Vector2.zero;
+        m_Rigidbody2D.gravityScale = baseGravityScale;
+        GetComponent<PlayerManager>().SetIsDashing(false);
+        //GetComponentInChildren<SpriteRenderer>().transform.rotation = Quaternion.identity;
+        //dashChrono = reglages.dashCoolDown;
+    }
+
     private void Flip()
     {
         // Switch the way the player is labelled as facing.

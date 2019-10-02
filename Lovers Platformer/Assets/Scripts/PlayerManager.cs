@@ -113,31 +113,34 @@ public class PlayerManager : MonoBehaviour
         isDashing = true;
         curCooldownDash = reglages.DashCooldown;
         Vector2 dirVector =new Vector2 (otherPlayer.transform.position.x - this.transform.position.x , otherPlayer.transform.position.y-this.transform.position.y);
-        StartCoroutine(characterControl.DashAction(dirVector));
+        StartCoroutine(characterControl.DashAction(dirVector,1f));
     }
 
-    public void DashActionWithDirection(Vector2 dirVector)
+    public void DashActionWithDirection(Vector2 dirVector, float dashForceMultiplicator)
     {
         isDashing = true;
-        StartCoroutine(characterControl.DashAction(dirVector));
+        curCooldownDash = reglages.DashCooldown;
+        StartCoroutine(characterControl.DashAction(dirVector, dashForceMultiplicator));
     }
 
     public void ContactWithOtherPlayerOnDash(Vector2 dashDir)
     {
         PlayerManager otherPlayerManager = otherPlayer.GetComponent<PlayerManager>();
-        if(otherPlayerManager.IsDashing())
+        //print("dash collision");
+       // if (otherPlayerManager.IsDashing())
+         //   DashActionWithDirection(otherPlayer.GetComponent<CharacterController2D>().GetDashDirection() * 2f);
+        otherPlayerManager.DashActionWithDirection(dashDir,1.3f);
+       /* if (otherPlayerManager.IsDashing())
         {
-            print("dash vs dash");
             if (!isPlayer1)
                 return;
-            DashActionWithDirection(otherPlayer.GetComponent<CharacterController2D>().GetDashDirection());
-            otherPlayerManager.DashActionWithDirection(dashDir);
+            DashActionWithDirection(otherPlayer.GetComponent<CharacterController2D>().GetDashDirection()*5f);
+            otherPlayerManager.DashActionWithDirection(dashDir * 5f);
         }
         else
         {
-            print("idle vs dash");
-            otherPlayerManager.DashActionWithDirection(dashDir);
-        }
+            otherPlayerManager.DashActionWithDirection(dashDir * 2f);
+        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D other)

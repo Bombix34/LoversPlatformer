@@ -25,6 +25,8 @@ public class CharacterController2D : MonoBehaviour
 
     private float saveMovementOnJump = 0f;
 
+    private float GravityScale;
+
     [Header("Events")]
     [Space]
 
@@ -36,6 +38,7 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        GravityScale = m_Rigidbody2D.gravityScale;
         manager = GetComponent<PlayerManager>();
         velocity = Vector2.zero;
 
@@ -117,19 +120,19 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public IEnumerator DashAction(Vector2 dirVector)
+    public IEnumerator DashAction(Vector2 dirVector, float forceMultiplicator)
     {
         DashDirection = dirVector;
         Vector2 tempDirection =dirVector;
         tempDirection.Normalize();
 
-        float baseGravityScale = m_Rigidbody2D.gravityScale;
         m_Rigidbody2D.gravityScale = 0f;
-        m_Rigidbody2D.velocity = new Vector2(tempDirection.x * reglages.moveSpeed, tempDirection.y * reglages.moveSpeed) * reglages.DashForce;
+        m_Rigidbody2D.velocity = new Vector2(tempDirection.x * reglages.moveSpeed * forceMultiplicator, tempDirection.y * reglages.moveSpeed* forceMultiplicator) * reglages.DashForce;
         /*float angle = Vector2.SignedAngle(Vector2.right, tempDirection);
         GetComponentInChildren<SpriteRenderer>().transform.Rotate(new Vector3(0.0f, 0.0f, angle));*/
-            //attendre la fin du dash
-       float dash = reglages.DashDuration;
+        //attendre la fin du dash
+        
+        float dash = reglages.DashDuration;
         while (dash > 0)
         {
             dash -= Time.deltaTime;
@@ -141,21 +144,22 @@ public class CharacterController2D : MonoBehaviour
                 {
                     if (manager.ObjectIsOtherPlayer(item.collider.gameObject))
                     {
-                        dash = 0;
                         manager.ContactWithOtherPlayerOnDash(dirVector);
+                        break;
                     }
                 }
             }
             yield return new WaitForSeconds(0.001f);
         }
-        //_______________________
+        EndDash();
+    }
 
-        // isDashing = false;
+    public void EndDash()
+    {
+        StopCoroutine("DashAction");
         m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.gravityScale = baseGravityScale;
+        m_Rigidbody2D.gravityScale = GravityScale;
         manager.SetIsDashing(false);
-        //GetComponentInChildren<SpriteRenderer>().transform.rotation = Quaternion.identity;
-        //dashChrono = reglages.dashCoolDown;
     }
 
     private void Flip()

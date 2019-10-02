@@ -11,23 +11,39 @@ public class PlayerManager : MonoBehaviour
     CharacterController2D characterControl;
     Animator anim;
     Vector2 movement;
+    private Rigidbody2D rigidbody;
+    GameObject otherPlayer;
 
     bool jumpTriggerAction = false;
     bool isJumping = false;
     bool jumpRelease = true;
-
+    bool collision = false;
+    [SerializeField] float forceDash;
     void Awake()
     {
         input = GetComponent<PlayerInputManager>();
         characterControl = GetComponent<CharacterController2D>();
         anim = GetComponent<Animator>();
         characterControl.InitSettings(reglages);
+        rigidbody = this.GetComponent<Rigidbody2D>();
+
+        if (isPlayer1)
+        {
+            otherPlayer = GameManager.Instance.GetPlayer2().gameObject;
+        }
+        else
+        {
+            otherPlayer = GameManager.Instance.GetPlayer1().gameObject;
+        }
+
     }
 
     void Update()
     {
         UpdateInput();
         UpdateAnimator();
+
+        Debug.DrawLine (otherPlayer.transform.position, this.transform.position, Color.red, 0.01f);
     }
 
     private void FixedUpdate()
@@ -52,8 +68,10 @@ public class PlayerManager : MonoBehaviour
         }
         if (input.GetSpecialInput())
             print("special");
-        if (input.GetTeleportInput())
-            print("Teleport");
+        if (input.GetTeleportInputDown())
+            {
+                DashAction();
+            }
     }
 
     void UpdateAnimator()
@@ -76,8 +94,29 @@ public class PlayerManager : MonoBehaviour
         characterControl.Move(movement.x * Time.fixedDeltaTime * reglages.moveSpeed, jumpTriggerAction);
     }
 
-    void TeleportAction()
+    void DashAction()
     {
+
+        StartCoroutine("MaCoroutine");
+        /*directionDash = (otherPlayer.transform.position - this.GetComponentInParent<Transform>().transform.position).normalized;
+
+        while(!collision)
+        {
+            
+            rigidbody.AddForce(directionDash * forceDash);
+        }*/
+        
+        
+        
+        
+
+
+
+
+
+
+       /*
+        //Switch
         Vector2 currentPosition = transform.position;
         if (isPlayer1)
         {
@@ -90,6 +129,33 @@ public class PlayerManager : MonoBehaviour
             GameObject otherPlayer = GameManager.Instance.GetPlayer1().gameObject;
             transform.position = otherPlayer.transform.position;
             GameManager.Instance.GetPlayer1().transform.position = currentPosition;
-        }
+        }*/
+    }
+
+    IEnumerator MaCoroutine()
+            {
+                Vector2 directionDash = directionDash = (otherPlayer.transform.position - this.GetComponentInParent<Transform>().transform.position).normalized;
+                this.rigidbody.isKinematic = true;
+                rigidbody.gravityScale = 0f;
+                this.rigidbody.isKinematic = false;
+
+                while(!collision)
+                {
+                    
+                    rigidbody.AddForce(directionDash * forceDash);
+                    yield return new WaitForSeconds(0.01f);
+                }
+
+               rigidbody.gravityScale = 2f;
+            }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        collision = true;
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        collision = false;
     }
 }

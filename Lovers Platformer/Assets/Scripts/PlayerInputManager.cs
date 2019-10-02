@@ -58,9 +58,14 @@ public class PlayerInputManager : MonoBehaviour
         return player.GetButtonDown("special");
     }
 
-    public bool GetTeleportInput()
+    public bool GetTeleportInputDown()
     {
         return player.GetButtonDown("teleport");
+    }
+
+    public bool GetTeleportInput()
+    {
+        return player.GetButton("teleport");
     }
 
     public bool GetStartInput()

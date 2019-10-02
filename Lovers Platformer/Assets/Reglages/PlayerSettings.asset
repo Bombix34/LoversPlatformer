@@ -15,6 +15,6 @@ MonoBehaviour:
   moveSpeed: 20
   jumpForce: 60
   AirControl: 1
-  AirControlMultiplicator: 0.6
+  AirControlMultiplicator: 1
   jumpInputTime: 0.25
   JumpNuance: 1

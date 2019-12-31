@@ -19,23 +19,6 @@ public class LinecastCutterBehaviour : MonoBehaviour {
         anim = GetComponent<Animator>();
     }
 
-    /*
-	Vector2 mouseStart;
-
-	void Update() {
-
-		if ( Input.GetMouseButtonDown( 0 ) ) {
-			mouseStart = Camera.main.ScreenToWorldPoint( Input.mousePosition );
-		}
-
-		Vector2 mouseEnd = Camera.main.ScreenToWorldPoint( Input.mousePosition );
-
-		if ( Input.GetMouseButtonUp( 0 ) ) {
-			LinecastCut( mouseStart, mouseEnd );
-		}
-	}
-    */
-
     public void TryLineCastCut(Vector2 slashDir, float slashRange, float slashSpeed)
 	{
         ResetLineRenderer();
@@ -91,7 +74,10 @@ public class LinecastCutterBehaviour : MonoBehaviour {
             cuttedObject.GetComponent<Rigidbody2D>().mass /= 2f;
             cuttedObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }
-        
+        if(cuttedObject.GetComponent<DestructibleObject>()!=null)
+        {
+            cuttedObject.GetComponent<DestructibleObject>().DestroyObject();
+        }
     }
 
     private void ResetLineRenderer()

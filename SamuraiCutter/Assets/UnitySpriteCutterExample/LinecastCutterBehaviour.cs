@@ -23,7 +23,7 @@ public class LinecastCutterBehaviour : MonoBehaviour {
 	{
         ResetLineRenderer();
         anim.SetBool("Slash", true);
-		Vector2 originPosition = transform.position;
+        Vector2 originPosition = new Vector3(transform.position.x, transform.position.y, -10f);
         slashDir *= slashRange;
         Vector2 endPosition = originPosition+slashDir;
         StartCoroutine(SlashFX(originPosition, endPosition, slashSpeed));
@@ -90,8 +90,10 @@ public class LinecastCutterBehaviour : MonoBehaviour {
     private IEnumerator SlashFX(Vector2 originPosition, Vector2 endPosition, float slashSpeed)
     {
         line.enabled = true;
+        originPosition = new Vector3(originPosition.x, originPosition.y, -10f);
         line.SetPosition(0, originPosition);
         line.SetPosition(1, originPosition);
+
         Vector2 dirVector = (endPosition - originPosition);
         float amplitude = dirVector.magnitude;
         float curAmplitude = 0f;

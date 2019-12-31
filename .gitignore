@@ -1,9 +1,9 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-Assets/AssetStoreTools*
+SamuraiCutter/[Ll]ibrary/
+SamuraiCutter/[Tt]emp/
+SamuraiCutter/[Oo]bj/
+SamuraiCutter/[Bb]uild/
+SamuraiCutter/[Bb]uilds/
+SamuraiCutter/Assets/AssetStoreTools*
 
 # Visual Studio cache directory
 .vs/
@@ -47,13 +47,3 @@ Icon?
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
-Assets/WwiseSettings.xml*
-Assets/WwiseSettings.xml.meta
-
-Merci de Rien/Assets/WwiseSettings\.xml
-
-Merci de Rien/Assets/WwiseSettings\.xml\.meta
-
-Merci de Rien/Assets/Scripts/Audio_scripts/WoodBridgePlayerTracker\.cs
-
-Merci de Rien/Assets/Scripts/Audio_scripts/WoodBridgePlayerTracker\.cs\.meta

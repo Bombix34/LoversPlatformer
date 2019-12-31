@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
 
         if (timer < 0)
         {
-            Vector3 spawnPos = new Vector3(this.transform.position.x + Random.Range(-3,3),this.transform.position.y, this.transform.position.z);
+            Vector3 spawnPos = new Vector3(this.transform.position.x + Random.Range(-5,5),this.transform.position.y, this.transform.position.z);
             Instantiate(spawningObject, spawnPos,Quaternion.identity);
             timer = originTimer;
         }

@@ -33,23 +33,15 @@ public class LinecastCutterBehaviour : MonoBehaviour {
 	}
     */
 
-    public void TryLineCastCut(Vector2 slashDir, float slashRange)
+    public void TryLineCastCut(Vector2 slashDir, float slashRange, float slashSpeed)
 	{
+        ResetLineRenderer();
 		Vector2 originPosition = transform.position;
         slashDir *= slashRange;
         Vector2 endPosition = originPosition+slashDir;
-        line.enabled = true;
-        line.SetPosition(0, originPosition);
-        line.SetPosition(1, endPosition);
-        StartCoroutine(EndLineRenderer());
+        StartCoroutine(SlashFX(originPosition, endPosition, slashSpeed));
         LinecastCut(originPosition, endPosition);
 	}
-
-    IEnumerator EndLineRenderer()
-    {
-        yield return new WaitForSeconds(0.1f);
-        line.enabled = false;
-    }
 	
 	void LinecastCut( Vector2 lineStart, Vector2 lineEnd )
     {
@@ -85,6 +77,44 @@ public class LinecastCutterBehaviour : MonoBehaviour {
             cuttedObject.GetComponent<Rigidbody2D>().mass /= 2f;
             cuttedObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }
+    }
+
+    private void ResetLineRenderer()
+    {
+        line.enabled = false;
+        line.SetPosition(0, transform.position);
+        line.SetPosition(1, transform.position);
+    }
+
+    private IEnumerator SlashFX(Vector2 originPosition, Vector2 endPosition, float slashSpeed)
+    {
+        line.enabled = true;
+        line.SetPosition(0, originPosition);
+        line.SetPosition(1, originPosition);
+        Vector2 dirVector = (endPosition - originPosition);
+        float amplitude = dirVector.magnitude;
+        float curAmplitude = 0f;
+        dirVector.Normalize();
+       //line.SetPosition(1, endPosition);
+        
+        float modif = 0f;
+        while(curAmplitude<amplitude)
+        {
+            modif += Time.fixedDeltaTime*slashSpeed;
+            line.SetPosition(1, originPosition+(dirVector * modif));
+            curAmplitude = ((Vector2)line.GetPosition(1) - originPosition).magnitude;
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
+        }
+        modif = 0f;
+        curAmplitude = 0f;
+        while(curAmplitude<amplitude)
+        {
+            modif += Time.fixedDeltaTime * (slashSpeed/2f);
+            line.SetPosition(0, originPosition + (dirVector * modif));
+            curAmplitude = ((Vector2)line.GetPosition(0) - originPosition).magnitude;
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
+        }
+        line.enabled = false;
     }
 
 	bool HitCounts( RaycastHit2D hit )

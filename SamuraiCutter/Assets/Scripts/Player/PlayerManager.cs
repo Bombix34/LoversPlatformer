@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     Animator anim;
     Vector2 movement;
     Vector2 slashDirection;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D body;
 
     bool isJumping = false;
     bool jumpRelease = true;
@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
         lineCutter = GetComponent<LinecastCutterBehaviour>();
         anim = GetComponent<Animator>();
         characterControl.InitSettings(reglages);
-        rigidbody = this.GetComponent<Rigidbody2D>();
+        body = this.GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -132,12 +132,12 @@ public class PlayerManager : MonoBehaviour
         {
             if (slashAmount < 0.2f)
             {
-                lineCutter.TryLineCastCut(slashDirection, reglages.slashRange);
+                lineCutter.TryLineCastCut(slashDirection, reglages.slashRange, reglages.slashSpeed);
             }
             else
             {
                 float range = Mathf.Max(reglages.maxSlashRange * slashAmount, reglages.slashRange);
-                lineCutter.TryLineCastCut(slashDirection, range);
+                lineCutter.TryLineCastCut(slashDirection, range, reglages.slashSpeed);
             }
             slashAmount = 0f;
             isSlashing = false;

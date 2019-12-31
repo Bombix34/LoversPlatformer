@@ -29,6 +29,9 @@ public class PlayerSettings : ScriptableObject
     [Range(0.1f, 2f)]
     public float slashChargeModificator = 1f;
 
+    [Range(10f, 300f)]
+    public float slashSpeed = 10f;
+
     [Range(1f, 10f)]
     public float slashRange = 1f;
     [Range(1f, 15f)]

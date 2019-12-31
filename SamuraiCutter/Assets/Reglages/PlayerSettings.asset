@@ -21,7 +21,7 @@ MonoBehaviour:
   DashForce: 1
   DashDuration: 0.1
   DashCooldown: 1
-  slashCooldown: 0.5
   slashChargeModificator: 0.5
+  slashSpeed: 150
   slashRange: 2.5
   maxSlashRange: 15

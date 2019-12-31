@@ -2740,6 +2740,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3131711593358205511, guid: e1848eaa52b19924cae3eac1edbcc01d,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131711593358205511, guid: e1848eaa52b19924cae3eac1edbcc01d,
+        type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4450878319021814922, guid: e1848eaa52b19924cae3eac1edbcc01d,
         type: 3}
       propertyPath: m_SortingOrder
@@ -3479,6 +3489,8 @@ GameObject:
   - component: {fileID: 629937108}
   - component: {fileID: 629937110}
   - component: {fileID: 629937109}
+  - component: {fileID: 629937112}
+  - component: {fileID: 629937111}
   m_Layer: 8
   m_Name: tilesheet_pagoda_67
   m_TagString: Untagged
@@ -3595,6 +3607,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &629937111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629937106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207cdb2869ee947a09e0718d4347cc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &629937112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629937106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d853f99060944aea394771b7841321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &644346936
 GameObject:
   m_ObjectHideFlags: 0
@@ -4087,6 +4123,8 @@ GameObject:
   - component: {fileID: 736473392}
   - component: {fileID: 736473394}
   - component: {fileID: 736473393}
+  - component: {fileID: 736473396}
+  - component: {fileID: 736473395}
   m_Layer: 8
   m_Name: tilesheet_pagoda_7 (2)
   m_TagString: Untagged
@@ -4203,6 +4241,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &736473395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736473390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207cdb2869ee947a09e0718d4347cc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &736473396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736473390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d853f99060944aea394771b7841321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &737922452
 GameObject:
   m_ObjectHideFlags: 0
@@ -6201,6 +6263,8 @@ GameObject:
   - component: {fileID: 1053774083}
   - component: {fileID: 1053774085}
   - component: {fileID: 1053774084}
+  - component: {fileID: 1053774087}
+  - component: {fileID: 1053774086}
   m_Layer: 8
   m_Name: tilesheet_pagoda_9
   m_TagString: Untagged
@@ -6317,6 +6381,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1053774086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053774081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207cdb2869ee947a09e0718d4347cc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1053774087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053774081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d853f99060944aea394771b7841321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1059351034
 GameObject:
   m_ObjectHideFlags: 0
@@ -6890,6 +6978,8 @@ GameObject:
   - component: {fileID: 1125791974}
   - component: {fileID: 1125791973}
   - component: {fileID: 1125791976}
+  - component: {fileID: 1125791978}
+  - component: {fileID: 1125791977}
   m_Layer: 8
   m_Name: tilesheet_pagoda_7
   m_TagString: Untagged
@@ -7016,6 +7106,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 207cdb2869ee947a09e0718d4347cc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1125791977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125791971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207cdb2869ee947a09e0718d4347cc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1125791978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125791971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d853f99060944aea394771b7841321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1141470833
@@ -8310,6 +8424,8 @@ GameObject:
   - component: {fileID: 1390389809}
   - component: {fileID: 1390389811}
   - component: {fileID: 1390389810}
+  - component: {fileID: 1390389813}
+  - component: {fileID: 1390389812}
   m_Layer: 8
   m_Name: tilesheet_pagoda_7 (3)
   m_TagString: Untagged
@@ -8426,6 +8542,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1390389812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390389807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207cdb2869ee947a09e0718d4347cc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1390389813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390389807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d853f99060944aea394771b7841321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1394329747
 GameObject:
   m_ObjectHideFlags: 0
@@ -9253,6 +9393,8 @@ GameObject:
   - component: {fileID: 1537088214}
   - component: {fileID: 1537088216}
   - component: {fileID: 1537088215}
+  - component: {fileID: 1537088218}
+  - component: {fileID: 1537088217}
   m_Layer: 8
   m_Name: tilesheet_pagoda_8
   m_TagString: Untagged
@@ -9369,6 +9511,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1537088217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537088212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207cdb2869ee947a09e0718d4347cc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1537088218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537088212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d853f99060944aea394771b7841321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1553935207
 GameObject:
   m_ObjectHideFlags: 0
@@ -10524,6 +10690,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1764820929
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2338002708820453838, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_Name
+      value: Boss_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708820453833, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002708758685079, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338002710537773495, guid: 9deaea41f4336425eaa07e9883b86dd0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9deaea41f4336425eaa07e9883b86dd0, type: 3}
 --- !u!1 &1790200542
 GameObject:
   m_ObjectHideFlags: 0
@@ -10699,7 +10944,7 @@ GameObject:
   - component: {fileID: 1817077781}
   m_Layer: 0
   m_Name: LevelDesign
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11643,6 +11888,8 @@ GameObject:
   - component: {fileID: 2011089996}
   - component: {fileID: 2011089998}
   - component: {fileID: 2011089997}
+  - component: {fileID: 2011090000}
+  - component: {fileID: 2011089999}
   m_Layer: 8
   m_Name: tilesheet_pagoda_7 (1)
   m_TagString: Untagged
@@ -11759,6 +12006,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2011089999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011089994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207cdb2869ee947a09e0718d4347cc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2011090000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011089994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d853f99060944aea394771b7841321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2021110474
 GameObject:
   m_ObjectHideFlags: 0
@@ -12239,6 +12510,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2116677757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116677759}
+  - component: {fileID: 2116677758}
+  m_Layer: 0
+  m_Name: SpawnerCaisse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2116677758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116677757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd7a83342c93884c96a51e74f8c3917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawningObject: {fileID: 8935854993503892867, guid: adf1fa18d5550b4459b2bb9dd17a7dac,
+    type: 3}
+  timer: 0
+  originTimer: 3
+--- !u!4 &2116677759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116677757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.22, y: 2.96, z: 8.382025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2123423225
 GameObject:
   m_ObjectHideFlags: 0

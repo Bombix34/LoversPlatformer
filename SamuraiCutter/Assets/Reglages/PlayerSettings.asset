@@ -25,3 +25,4 @@ MonoBehaviour:
   slashSpeed: 150
   slashRange: 2.5
   maxSlashRange: 15
+  freezeTimeWhileSlashing: 0.1

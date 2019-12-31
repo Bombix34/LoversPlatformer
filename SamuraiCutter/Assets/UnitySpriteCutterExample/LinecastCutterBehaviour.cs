@@ -8,12 +8,15 @@ public class LinecastCutterBehaviour : MonoBehaviour {
 	[SerializeField]
 	LayerMask layerMask;
 
+    Animator anim;
+
     LineRenderer line;
 
     private void Awake()
     {
         line = GetComponent<LineRenderer>();
         line.enabled = false;
+        anim = GetComponent<Animator>();
     }
 
     /*
@@ -36,6 +39,7 @@ public class LinecastCutterBehaviour : MonoBehaviour {
     public void TryLineCastCut(Vector2 slashDir, float slashRange, float slashSpeed)
 	{
         ResetLineRenderer();
+        anim.SetBool("Slash", true);
 		Vector2 originPosition = transform.position;
         slashDir *= slashRange;
         Vector2 endPosition = originPosition+slashDir;
@@ -54,10 +58,15 @@ public class LinecastCutterBehaviour : MonoBehaviour {
 				gameObjectsToCut.Add( hit.transform.gameObject );
 			}
 		}
+        if(gameObjectsToCut.Count>0)
+        {
+            Camera.main.GetComponent<CameraManager>().setShake(0.2f);
+            Camera.main.GetComponent<FreezeFX>().FreezeScreen();
+        }
 		
 		foreach ( GameObject go in gameObjectsToCut )
         {
-			SpriteCutterOutput output = SpriteCutter.Cut( new SpriteCutterInput()
+            SpriteCutterOutput output = SpriteCutter.Cut( new SpriteCutterInput()
             {
 				lineStart = lineStart,
 				lineEnd = lineEnd,
@@ -71,12 +80,18 @@ public class LinecastCutterBehaviour : MonoBehaviour {
 
     private void ModifyOutputObjects(GameObject cuttedObject)
     {
-        if(cuttedObject.GetComponent<Rigidbody2D>()!=null)
+
+        if (cuttedObject.GetComponent<HitFX>() != null)
+        {
+            cuttedObject.GetComponent<HitFX>().Hit();
+        }
+        if (cuttedObject.GetComponent<Rigidbody2D>()!=null)
         {
             cuttedObject.GetComponent<Rigidbody2D>().gravityScale = 1f;
             cuttedObject.GetComponent<Rigidbody2D>().mass /= 2f;
             cuttedObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }
+        
     }
 
     private void ResetLineRenderer()
@@ -115,6 +130,7 @@ public class LinecastCutterBehaviour : MonoBehaviour {
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
         line.enabled = false;
+        anim.SetBool("Slash", false);
     }
 
 	bool HitCounts( RaycastHit2D hit )

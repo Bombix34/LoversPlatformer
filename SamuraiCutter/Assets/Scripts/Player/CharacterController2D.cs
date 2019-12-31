@@ -79,6 +79,7 @@ public class CharacterController2D : MonoBehaviour
             if (saveMovementOnJump != 0)
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + saveMovementOnJump * Time.fixedDeltaTime*10f, m_Rigidbody2D.velocity.y);
 
+            
             // If the input is moving the player right and the player is facing left...
             if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
             {
@@ -86,6 +87,7 @@ public class CharacterController2D : MonoBehaviour
                 // Otherwise if the input is moving the player left and the player is facing right...
                 Flip();
             }
+            
         }
         if (!jumpInput && m_jumpTimeCounter > 0)
         {
@@ -154,10 +156,7 @@ public class CharacterController2D : MonoBehaviour
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        manager.PlayerSprite.flipX=!m_FacingRight;
     }
 
     public bool IsGrounded()
@@ -178,5 +177,17 @@ public class CharacterController2D : MonoBehaviour
     public Vector2 GetDashDirection()
     {
         return DashDirection;
+    }
+
+    public bool FacingRight
+    {
+        get
+        {
+            return m_FacingRight;
+        }
+        set
+        {
+            m_FacingRight = value;
+        }
     }
 }

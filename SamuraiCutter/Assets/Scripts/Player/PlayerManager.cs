@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
 
     [SerializeField] PlayerSettings reglages;
+    [SerializeField] SpriteRenderer playerSprite;
     PlayerInputManager input;
     CharacterController2D characterControl;
     LinecastCutterBehaviour lineCutter;
@@ -13,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     Vector2 movement;
     Vector2 slashDirection;
     private Rigidbody2D body;
+
+    bool canMove = true;
 
     bool isJumping = false;
     bool jumpRelease = true;
@@ -61,7 +64,10 @@ public class PlayerManager : MonoBehaviour
             curCooldownDash -= Time.fixedDeltaTime;
         }
 
-        movement = new Vector2(input.GetMovementInputX(),input.GetMovementInputY());
+        if (canMove)
+            movement = new Vector2(input.GetMovementInputX(), input.GetMovementInputY());
+        else
+            movement = Vector2.zero;
         UpdateSlash();
         if (input.GetJumpInput()&&jumpRelease)
         {
@@ -74,10 +80,6 @@ public class PlayerManager : MonoBehaviour
         {
             isJumping = false;
             jumpRelease = true;
-        }
-        if (input.GetSpecialInput())
-        {
-            Application.LoadLevel(0);
         }
     }
 
@@ -130,19 +132,39 @@ public class PlayerManager : MonoBehaviour
         }
         if (slashTest == Vector2.zero && isSlashing)
         {
-            if (slashAmount < 0.2f)
-            {
-                lineCutter.TryLineCastCut(slashDirection, reglages.slashRange, reglages.slashSpeed);
-            }
-            else
-            {
-                float range = Mathf.Max(reglages.maxSlashRange * slashAmount, reglages.slashRange);
-                lineCutter.TryLineCastCut(slashDirection, range, reglages.slashSpeed);
-            }
-            slashAmount = 0f;
+            characterControl.FacingRight = slashDirection.x > 0f;
+            PlayerSprite.flipX = !characterControl.FacingRight;
+            SlashAction();
             isSlashing = false;
-            slashDirection = Vector2.zero;
         }
+    }
+
+    private void SlashAction()
+    {
+        StartCoroutine(SlashCoroutine());
+        if (slashAmount < 0.2f)
+        {
+            lineCutter.TryLineCastCut(slashDirection, reglages.slashRange, reglages.slashSpeed);
+        }
+        else
+        {
+            float range = Mathf.Max(reglages.maxSlashRange * slashAmount, reglages.slashRange);
+            lineCutter.TryLineCastCut(slashDirection, range, reglages.slashSpeed);
+        }
+        slashAmount = 0f;
+        slashDirection = Vector2.zero;
+    }
+
+    private IEnumerator SlashCoroutine()
+    {
+        canMove = false;
+        movement = Vector2.zero;
+        float gravityScale = body.gravityScale;
+        body.velocity = movement;
+        body.gravityScale = 0f;
+        yield return new WaitForSeconds(reglages.freezeTimeWhileSlashing);
+        canMove = true;
+        body.gravityScale =gravityScale;
     }
 
     public void DashActionWithDirection(Vector2 dirVector, float dashForceMultiplicator)
@@ -169,6 +191,14 @@ public class PlayerManager : MonoBehaviour
         set
         {
             IsDashing = value;
+        }
+    }
+
+    public SpriteRenderer PlayerSprite
+    {
+        get
+        {
+            return playerSprite;
         }
     }
 }

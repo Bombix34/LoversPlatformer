@@ -36,4 +36,7 @@ public class PlayerSettings : ScriptableObject
     public float slashRange = 1f;
     [Range(1f, 15f)]
     public float maxSlashRange = 2f;
+
+    [Range(0f, 2f)]
+    public float freezeTimeWhileSlashing = 1f;
 }

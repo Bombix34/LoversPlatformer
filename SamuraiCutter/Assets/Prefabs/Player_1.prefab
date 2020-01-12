@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8442620871905664945}
   - component: {fileID: 8442620871905664950}
   - component: {fileID: 8042559850895510315}
+  - component: {fileID: 2228187492472383559}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -65,6 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde8b9a2ed38dee4c89650ce11d96bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   reglages: {fileID: 11400000, guid: d625fb8b2b2e482469704169a28e321a, type: 2}
   playerSprite: {fileID: 8442620873040003907}
   forceDash: 5000
@@ -186,7 +189,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   m_AssetId: 
-  m_SceneId: 2016048927
+  m_SceneId: 1184919617
+--- !u!114 &2228187492472383559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442620871905664942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  compressRotation: 1
+  clientAuthority: 0
 --- !u!1 &8442620873008600392
 GameObject:
   m_ObjectHideFlags: 0

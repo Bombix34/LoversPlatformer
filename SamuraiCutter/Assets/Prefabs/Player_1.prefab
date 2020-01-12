@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8442620871905664950}
   - component: {fileID: 8042559850895510315}
   - component: {fileID: 2228187492472383559}
+  - component: {fileID: 8529115967347159519}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -189,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   m_AssetId: 
-  m_SceneId: 0
+  m_SceneId: 2516241367
 --- !u!114 &2228187492472383559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +207,34 @@ MonoBehaviour:
   syncInterval: 0
   compressRotation: 1
   clientAuthority: 1
+--- !u!114 &8529115967347159519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442620871905664942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf3f42ce14f1544690232c8e78af1f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  Requires: 323
+  Intercept: 0
+  Layers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  IndicatorPrefab: {fileID: 120936, guid: ec98bb53cbec0ee41944de0c6174eca6, type: 3}
+  Paint: 0
+  Shape: {fileID: 2800000, guid: fef0ca7c77c683d4da0b22b25f9ed8ad, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Size: {x: 1, y: 1}
+  Angle: 0
+  Hit: 0
+  down: 0
+  indicatorInstance: {fileID: 0}
 --- !u!1 &8442620873008600392
 GameObject:
   m_ObjectHideFlags: 0

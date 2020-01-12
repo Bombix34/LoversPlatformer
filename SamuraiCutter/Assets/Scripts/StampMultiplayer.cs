@@ -91,6 +91,8 @@ namespace Destructible2D
 
 		protected virtual void Update()
 		{
+			if (!isLocalPlayer)
+				return;
 			// Main camera exists?
 			var mainCamera = Camera.main;
 
@@ -113,7 +115,15 @@ namespace Destructible2D
 					// Stamp everything at this point?
 					if (Hit == HitType.All)
 					{
-						D2dStamp.All(Paint, position, Size, Angle, Shape, Color, Layers);
+						if (isServer)
+						{
+							this.RpcDamage(position);
+						}
+						else
+						{
+							this.CmdDestroy(position);
+						}
+						//D2dStamp.All(Paint, position, Size, Angle, Shape, Color, Layers);
 					}
 
 					// Stamp the first thing at this point?
@@ -147,5 +157,20 @@ namespace Destructible2D
 				}
 			}
 		}
+		[Command]
+		void CmdDestroy(Vector2 position)
+		{
+			Debug.Log("urg");
+			D2dStamp.All(Paint, position, Size, Angle, Shape, Color, Layers);
+			this.RpcDamage(position);
+		}
+
+		[ClientRpc]
+		void RpcDamage(Vector2 position)
+		{
+			Debug.Log("arg");
+			D2dStamp.All(Paint, position, Size, Angle, Shape, Color, Layers);
+		}
+
 	}
 }

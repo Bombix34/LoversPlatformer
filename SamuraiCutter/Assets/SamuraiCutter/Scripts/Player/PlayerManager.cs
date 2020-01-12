@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
 
     [SerializeField] PlayerSettings reglages;
@@ -54,6 +55,10 @@ public class PlayerManager : MonoBehaviour
 
     void UpdateInput()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         //dash
         if (isDashing)
         {

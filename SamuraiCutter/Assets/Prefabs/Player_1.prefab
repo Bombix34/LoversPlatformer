@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   m_AssetId: 
-  m_SceneId: 1184919617
+  m_SceneId: 0
 --- !u!114 &2228187492472383559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,9 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0
   compressRotation: 1
-  clientAuthority: 0
+  clientAuthority: 1
 --- !u!1 &8442620873008600392
 GameObject:
   m_ObjectHideFlags: 0

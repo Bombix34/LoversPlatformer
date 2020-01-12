@@ -68,7 +68,7 @@ public class PlayerManager : MonoBehaviour
             movement = new Vector2(input.GetMovementInputX(), input.GetMovementInputY());
         else
             movement = Vector2.zero;
-        UpdateSlash();
+        //UpdateSlash();
         if (input.GetJumpInput()&&jumpRelease)
         {
             isJumping = true;

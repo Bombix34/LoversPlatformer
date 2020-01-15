@@ -50,7 +50,7 @@ public class OverwormsGameManager : MonoBehaviour
                 this.ordonedHeroes.Add(hero);
             }
         }
-        this.ordonedHeroes.OrderBy(a => Guid.NewGuid()).ToList();//Random du piff
+        this.ordonedHeroes = this.ordonedHeroes.OrderBy(a => Guid.NewGuid()).ToList();//Random du piff
         this.NextTurn();
     }
 

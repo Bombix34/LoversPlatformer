@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class HeroMovement : MonoBehaviour
 { 
-    private HeroSettings m_reglages;
     private HeroManager m_manager;
     //[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
@@ -39,6 +38,7 @@ public class HeroMovement : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_GravityScale = m_Rigidbody2D.gravityScale;
         m_manager = GetComponent<HeroManager>();
+
         m_velocity = Vector2.zero;
 
         if (OnLandEvent == null)
@@ -71,7 +71,7 @@ public class HeroMovement : MonoBehaviour
     public void Move(float move, bool jumpInput)
     {
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_reglages.AirControl)
+        if (m_Grounded || m_manager.Settings.AirControl)
         {
             // Move the character by finding the target velocity
             Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
@@ -95,9 +95,9 @@ public class HeroMovement : MonoBehaviour
             m_jumpTimeCounter = 0;
         }
         // If the player should jump...
-        if (m_reglages.JumpNuance && (jumpInput && m_jumpTimeCounter > 0))
+        if (m_manager.Settings.JumpNuance && (jumpInput && m_jumpTimeCounter > 0))
         {
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_reglages.jumpForce * Time.fixedDeltaTime * 5f);
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_manager.Settings.jumpForce * Time.fixedDeltaTime * 5f);
             m_jumpTimeCounter -= Time.fixedDeltaTime;
         }
     }
@@ -109,16 +109,16 @@ public class HeroMovement : MonoBehaviour
             m_Grounded = false;
             m_saveMovementOnJump = moveX * 50f;
             // Add a vertical force to the player.
-            if (m_reglages.JumpNuance)
+            if (m_manager.Settings.JumpNuance)
             {
-                m_jumpTimeCounter = m_reglages.jumpInputTime;
+                m_jumpTimeCounter = m_manager.Settings.jumpInputTime;
 
-                m_Rigidbody2D.AddForce(new Vector2(m_saveMovementOnJump, m_reglages.jumpForce), ForceMode2D.Impulse);
+                m_Rigidbody2D.AddForce(new Vector2(m_saveMovementOnJump, m_manager.Settings.jumpForce), ForceMode2D.Impulse);
                 // m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, reglages.jumpForce*Time.fixedDeltaTime);
             }
             else
             {
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_reglages.jumpForce));
+                m_Rigidbody2D.AddForce(new Vector2(0f, m_manager.Settings.jumpForce));
             }
         }
     }
@@ -139,14 +139,6 @@ public class HeroMovement : MonoBehaviour
     public bool IsFalling
     {
         get => (m_Rigidbody2D.velocity.y < 0f && !m_Grounded);
-    }
-
-    public HeroSettings Reglages
-    {
-        set
-        {
-            m_reglages = value;
-        }
     }
 
     public bool FacingRight

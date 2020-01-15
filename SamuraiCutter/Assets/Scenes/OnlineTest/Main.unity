@@ -309,9 +309,9 @@ GameObject:
   - component: {fileID: 1314048816}
   - component: {fileID: 1314048815}
   - component: {fileID: 1314048817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,7 +558,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 30
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -582,7 +582,7 @@ MonoBehaviour:
   m_MovementSmoothing: 0.05
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_GroundCheck: {fileID: 826485430}
   OnLandEvent:
     m_PersistentCalls:
@@ -601,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511648ee12fc30042a1f996bd16a5e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_settings: {fileID: 11400000, guid: d62dbbc01cf8e5f46a10d915bebb485c, type: 2}
 --- !u!114 &1856815646
 MonoBehaviour:
   m_ObjectHideFlags: 0

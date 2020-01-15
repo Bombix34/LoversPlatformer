@@ -19,7 +19,7 @@ public class HeroPlayState : HeroState
 
     public override void Execute()
     {
-
+        m_heroManager.UpdateInput();
     }
 
     public override void Exit()

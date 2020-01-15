@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f305648117b0b5b4da050289ff88db87, type: 3}
   m_Name: HeroSettings
   m_EditorClassIdentifier: 
-  moveSpeed: 6.9
-  jumpForce: 500
+  moveSpeed: 17.2
+  jumpForce: 300
   AirControl: 0
   AirControlMultiplicator: 0.5
-  jumpInputTime: 0.35
+  jumpInputTime: 0.548
   JumpNuance: 0

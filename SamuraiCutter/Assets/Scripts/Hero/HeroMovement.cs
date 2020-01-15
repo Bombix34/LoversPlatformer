@@ -107,13 +107,12 @@ public class HeroMovement : MonoBehaviour
         if (m_Grounded)
         {
             m_Grounded = false;
-            m_saveMovementOnJump = moveX * 50f;
-            // Add a vertical force to the player.
             if (m_manager.Settings.JumpNuance)
             {
                 m_jumpTimeCounter = m_manager.Settings.jumpInputTime;
 
-                m_Rigidbody2D.AddForce(new Vector2(m_saveMovementOnJump, m_manager.Settings.jumpForce), ForceMode2D.Impulse);
+                //m_Rigidbody2D.AddForce(new Vector2(m_saveMovementOnJump, m_manager.Settings.jumpForce), ForceMode2D.Force);
+                m_Rigidbody2D.velocity = new Vector2(m_saveMovementOnJump*2f, m_manager.Settings.jumpForce);
                 // m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, reglages.jumpForce*Time.fixedDeltaTime);
             }
             else

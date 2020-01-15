@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: HeroSettings
   m_EditorClassIdentifier: 
   moveSpeed: 17.2
-  jumpForce: 300
-  AirControl: 0
-  AirControlMultiplicator: 0.5
-  jumpInputTime: 0.548
-  JumpNuance: 0
+  jumpForce: 47.2
+  AirControl: 1
+  AirControlMultiplicator: 0.45
+  jumpInputTime: 0.19
+  JumpNuance: 1

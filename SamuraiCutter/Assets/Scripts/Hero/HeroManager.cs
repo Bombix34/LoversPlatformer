@@ -22,8 +22,8 @@ public class HeroManager : ObjectManager
 
     protected void Start()
     {
-       // ChangeState(new HeroWaitState(this));
-        ChangeState(new HeroPlayState(this));
+        ChangeState(new HeroWaitState(this));
+       // ChangeState(new HeroPlayState(this));
     }
 
     protected void Update()

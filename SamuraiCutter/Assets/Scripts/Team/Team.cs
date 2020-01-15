@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
 public class Team
 {
-    public List<HeroManager> Heroes { get; set; }
+    public List<HeroManager> Heroes;
     public bool IsAlive 
     {
         get

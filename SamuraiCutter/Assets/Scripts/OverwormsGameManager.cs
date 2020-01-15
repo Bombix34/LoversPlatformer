@@ -9,12 +9,18 @@ public class OverwormsGameManager : MonoBehaviour
 
     private bool gameTerminated = false;
     public VictoryCondition victoryCondition = new DefaultVictoryCondition();
-    public TeamManager teamManager;
+    private TeamManager teamManager;
 
     private List<HeroManager> ordonedHeroes;
     private float turnStartTime;
 
     public HeroManager CurrentHero { get; set; }
+
+    private void Start()
+    {
+        this.teamManager = GetComponent<TeamManager>();
+        this.OnStartGame();
+    }
 
     private void Update()
     {
@@ -23,7 +29,7 @@ public class OverwormsGameManager : MonoBehaviour
 
     private void CheckTimeLimit()
     {
-        if (Time.time <= (turnStartTime + MaxTurnTime))
+        if (Time.time >= (turnStartTime + MaxTurnTime))
         {
             this.EndTurn();
         }
@@ -36,6 +42,7 @@ public class OverwormsGameManager : MonoBehaviour
 
     private void OnStartGame()
     {
+        this.ordonedHeroes = new List<HeroManager>();
         foreach (var team in teamManager.Teams)
         {
             foreach (var hero in team.Heroes)
@@ -44,6 +51,7 @@ public class OverwormsGameManager : MonoBehaviour
             }
         }
         this.ordonedHeroes.OrderBy(a => Guid.NewGuid()).ToList();//Random du piff
+        this.NextTurn();
     }
 
     private void OnEndTurn()
@@ -63,9 +71,13 @@ public class OverwormsGameManager : MonoBehaviour
 
     private void NextHero()
     {
-        this.CurrentHero.ChangeState(new HeroWaitState(this.CurrentHero));
-        this.ordonedHeroes.RemoveAt(0);
-        this.ordonedHeroes.Add(this.CurrentHero);
+        if(this.CurrentHero != null)
+        {
+            this.CurrentHero.ChangeState(new HeroWaitState(this.CurrentHero));
+            this.ordonedHeroes.RemoveAt(0);
+            this.ordonedHeroes.Add(this.CurrentHero);
+        }
+
         this.CurrentHero = this.ordonedHeroes[0];
         this.CurrentHero.ChangeState(new HeroPlayState(this.CurrentHero));
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamManager
+public class TeamManager: MonoBehaviour
 {
-    public List<Team> Teams { get; set; }
+    public List<Team> Teams;
 }

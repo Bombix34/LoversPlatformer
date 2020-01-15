@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Team
 {
-    public List<object> Heroes { get; set; }
+    public List<HeroManager> Heroes { get; set; }
     public bool IsAlive 
     {
         get
@@ -15,6 +16,6 @@ public class Team
 
     private bool IsAnyHeroeAlive()//Add check for 
     {
-        return true;
+        return true;//Heroes.Any(h => h);
     }
 }

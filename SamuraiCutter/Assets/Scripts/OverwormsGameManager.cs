@@ -11,10 +11,10 @@ public class OverwormsGameManager : MonoBehaviour
     public VictoryCondition victoryCondition = new DefaultVictoryCondition();
     public TeamManager teamManager;
 
-    private List<object> ordonedHeroes;
+    private List<HeroManager> ordonedHeroes;
     private float turnStartTime;
 
-    public object CurrentHero { get; set; }
+    public HeroManager CurrentHero { get; set; }
 
     private void Update()
     {
@@ -63,10 +63,12 @@ public class OverwormsGameManager : MonoBehaviour
 
     private void NextHero()
     {
+        this.CurrentHero.ChangeState(new HeroWaitState(this.CurrentHero));
         this.ordonedHeroes.RemoveAt(0);
         this.ordonedHeroes.Add(this.CurrentHero);
         this.CurrentHero = this.ordonedHeroes[0];
-        
+        this.CurrentHero.ChangeState(new HeroPlayState(this.CurrentHero));
+
     }
 
     private bool CheckVictory()

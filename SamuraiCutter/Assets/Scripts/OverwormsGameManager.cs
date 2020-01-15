@@ -79,6 +79,7 @@ public class OverwormsGameManager : MonoBehaviour
         }
 
         this.CurrentHero = this.ordonedHeroes[0];
+        Debug.Log(CurrentHero);
         this.CurrentHero.ChangeState(new HeroPlayState(this.CurrentHero));
 
     }

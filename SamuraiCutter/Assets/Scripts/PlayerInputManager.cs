@@ -57,7 +57,7 @@ public class PlayerInputManager : MonoBehaviour
 
     public bool GetJumpInputDown()
     {
-        return player.GetButtonDown("jump");
+        return player.GetButtonDown("Jump");
     }
 
     public bool GetJumpInput()
@@ -67,22 +67,27 @@ public class PlayerInputManager : MonoBehaviour
 
     public bool GetJumpInputUp()
     {
-        return player.GetButtonUp("jump");
+        return player.GetButtonUp("Jump");
     }
 
-    public bool GetSpecialInput()
+    /// <summary>
+    /// skill input start with 1 not 0
+    /// </summary>
+    /// <param name="skillNb"></param>
+    /// <returns></returns>
+    public bool GetSkillInputDown(int skillNb)
     {
-        return player.GetButtonDown("special");
+        return player.GetButtonDown("Skill0"+skillNb);
     }
 
-    public bool GetDashInputDown()
+    public bool GetSkillInput(int skillNb)
     {
-        return player.GetButtonDown("dash");
+        return player.GetButton("Skill0" + skillNb);
     }
 
-    public bool GetDashInput()
+    public bool GetSkillInputUp(int skillNb)
     {
-        return player.GetButton("dash");
+        return player.GetButtonUp("Skill0" + skillNb);
     }
 
     public bool GetStartInput()

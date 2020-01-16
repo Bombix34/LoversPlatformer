@@ -14,7 +14,7 @@ public class HeroManager : ObjectManager
     protected HeroMovement m_movement;
     public HeroStatsManager StatsManager { get; private set; }
 
-    protected bool m_isJumping=false;
+    protected bool m_isJumping = false;
     protected bool m_isJumpInputRelease = true;
     protected Vector2 m_inputMovement;
 

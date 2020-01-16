@@ -13,7 +13,7 @@ public class HeroManager : ObjectManager
     protected PlayerInputManager m_input;
     protected HeroMovement m_movement;
 
-    protected bool m_isJumping=false;
+    protected bool m_isJumping = false;
     protected bool m_isJumpInputRelease = true;
     protected Vector2 m_inputMovement;
 

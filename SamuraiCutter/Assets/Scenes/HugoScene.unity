@@ -529,5 +529,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1446552502573973333, guid: 7521ec0b16a95484ab1333ed976ea2c6,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[3]._name
+      value: Skill01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446552502573973333, guid: 7521ec0b16a95484ab1333ed976ea2c6,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[3]._descriptiveName
+      value: Skill01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446552502573973333, guid: 7521ec0b16a95484ab1333ed976ea2c6,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[4]._name
+      value: Skill02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446552502573973333, guid: 7521ec0b16a95484ab1333ed976ea2c6,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[4]._descriptiveName
+      value: Skill02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7521ec0b16a95484ab1333ed976ea2c6, type: 3}

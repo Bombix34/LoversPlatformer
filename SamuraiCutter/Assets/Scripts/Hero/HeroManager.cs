@@ -12,6 +12,7 @@ public class HeroManager : ObjectManager
 
     protected PlayerInputManager m_input;
     protected HeroMovement m_movement;
+    public HeroStatsManager StatsManager { get; private set; }
 
     protected bool m_isJumping=false;
     protected bool m_isJumpInputRelease = true;
@@ -21,6 +22,7 @@ public class HeroManager : ObjectManager
     {
         m_input = GetComponent<PlayerInputManager>();
         m_movement = GetComponent<HeroMovement>();
+        StatsManager = GetComponent<HeroStatsManager>();
     }
 
     protected void Start()

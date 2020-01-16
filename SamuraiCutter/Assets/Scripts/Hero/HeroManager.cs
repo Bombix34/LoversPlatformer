@@ -27,19 +27,25 @@ public class HeroManager : ObjectManager
 
     protected void Start()
     {
-        if(!m_debugTest)
-            ChangeState(new HeroWaitState(this));
-        else
+        if(m_debugTest)
             ChangeState(new HeroPlayState(this));
     }
 
     protected void Update()
     {
+        if(m_currentState == null)
+        {
+            return;
+        }
         m_currentState.Execute();
     }
 
     protected void FixedUpdate()
     {
+        if (m_currentState == null)
+        {
+            return;
+        }
         UpdateMovement();
     }
 

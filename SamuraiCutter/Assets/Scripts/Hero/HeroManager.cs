@@ -15,6 +15,7 @@ public class HeroManager : ObjectManager
 
     protected PlayerInputManager m_input;
     protected HeroMovement m_movement;
+    public HeroStatsManager StatsManager { get; private set; }
 
     protected bool m_isJumping = false;
     protected bool m_isJumpInputRelease = true;
@@ -24,23 +25,30 @@ public class HeroManager : ObjectManager
     {
         m_input = GetComponent<PlayerInputManager>();
         m_movement = GetComponent<HeroMovement>();
+        StatsManager = GetComponent<HeroStatsManager>();
     }
 
     protected void Start()
     {
-        if(!m_debugTest)
-            ChangeState(new HeroWaitState(this));
-        else
+        if(m_debugTest)
             ChangeState(new HeroPlayState(this));
     }
 
     protected void Update()
     {
+        if(m_currentState == null)
+        {
+            return;
+        }
         m_currentState.Execute();
     }
 
     protected void FixedUpdate()
     {
+        if (m_currentState == null)
+        {
+            return;
+        }
         UpdateMovement();
     }
 

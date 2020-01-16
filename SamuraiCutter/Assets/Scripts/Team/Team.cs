@@ -15,8 +15,8 @@ public class Team
         }
     }
 
-    private bool IsAnyHeroeAlive()//Add check for 
+    private bool IsAnyHeroeAlive()
     {
-        return true;//Heroes.Any(h => h);
+        return Heroes.Any(h => h.StatsManager.Alive);
     }
 }

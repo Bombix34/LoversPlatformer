@@ -7,6 +7,9 @@ public class HeroManager : ObjectManager
     [SerializeField]
     protected HeroSettings m_settings;
 
+    [SerializeField]
+    private bool m_debugTest;
+
     protected PlayerInputManager m_input;
     protected HeroMovement m_movement;
 
@@ -22,8 +25,10 @@ public class HeroManager : ObjectManager
 
     protected void Start()
     {
-        ChangeState(new HeroWaitState(this));
-       // ChangeState(new HeroPlayState(this));
+        if(!m_debugTest)
+            ChangeState(new HeroWaitState(this));
+        else
+            ChangeState(new HeroPlayState(this));
     }
 
     protected void Update()

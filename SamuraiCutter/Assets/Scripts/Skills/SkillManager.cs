@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class SkillManager
+public abstract class SkillManager : ScriptableObject
 {
     protected HeroManager m_hero;
+    protected bool m_endSkill = false;
 
     public abstract void UseSkill();
     public abstract void UpdateSkill();
@@ -18,6 +19,11 @@ public abstract class SkillManager
         {
             m_hero = value;
         }
+    }
+
+    public bool IsSkillEnded
+    {
+        get => m_endSkill;
     }
 
     #endregion

@@ -18,3 +18,4 @@ MonoBehaviour:
   AirControlMultiplicator: 0.45
   jumpInputTime: 0.19
   JumpNuance: 1
+  skillsDatabase: {fileID: 11400000, guid: c3a5a131abe76784580747f702664fe7, type: 2}

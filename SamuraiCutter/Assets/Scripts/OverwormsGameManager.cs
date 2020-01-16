@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class OverwormsGameManager : MonoBehaviour
 {
-    const float MaxTurnTime = 60;
+    const float MaxTurnTime = 10;
 
     private bool gameTerminated = false;
     public VictoryCondition victoryCondition = new DefaultVictoryCondition();

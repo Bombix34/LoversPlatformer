@@ -6,6 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "OVERWORMS/Réglages hero")]
 public class HeroSettings : ScriptableObject
 {
+    #region Stats
+    [Header("Stats du Personnage")]
+    public int lifePoint;
+    #endregion
+
+    #region Movement
     [Header("Reglages Mouvements")]
     [Range(1f, 50f)]
     public float moveSpeed;
@@ -18,4 +24,5 @@ public class HeroSettings : ScriptableObject
     [Range(0f, 1f)]
     public float jumpInputTime = 0.35f;
     public bool JumpNuance = false;
+    #endregion
 }

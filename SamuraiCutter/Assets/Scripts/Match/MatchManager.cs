@@ -6,23 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class MatchManager : MonoBehaviour
 {
+    public bool useUI = true;
     [Header("UI")]
     public GameObject backgroundPanel;
     public GameObject teamPanelPrefab;
     [Header("Settings")]
     public MatchSettings matchSettings;
+    [SerializeField]
     private List<MatchTeam> matchTeams;
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
-        this.matchTeams = new List<MatchTeam>();
-        for (int i = 0; i < matchSettings.teamNumber; i++)
+        if (this.useUI)
         {
-            var matchTeam = new MatchTeam($"Team {i}");
-            matchTeams.Add(matchTeam);
-            var teamPanelGameobject = Instantiate(teamPanelPrefab, backgroundPanel.transform);
-            var matchTeamPanel = teamPanelGameobject.GetComponent<MatchTeamPanel>();
-            matchTeamPanel.Init(matchTeam, this.matchSettings.heroByTeam);
+            DontDestroyOnLoad(this.gameObject);
+            this.matchTeams = new List<MatchTeam>();
+            for (int i = 0; i < matchSettings.teamNumber; i++)
+            {
+                var matchTeam = new MatchTeam($"Team {i}");
+                matchTeams.Add(matchTeam);
+                var teamPanelGameobject = Instantiate(teamPanelPrefab, backgroundPanel.transform);
+                var matchTeamPanel = teamPanelGameobject.GetComponent<MatchTeamPanel>();
+                matchTeamPanel.Init(matchTeam, this.matchSettings.heroByTeam);
+            }
+        }
+        else
+        {
+            this.InitGame();
         }
     }
 
@@ -37,14 +46,19 @@ public class MatchManager : MonoBehaviour
     }
 
 
-    void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        this.InitGame();
+        SceneManager.sceneLoaded -= this.OnGameSceneLoaded;
+    }
+
+    private void InitGame()
     {
         var teamManager = FindObjectOfType<TeamManager>();
         teamManager.Init(matchTeams);
         var gameManager = FindObjectOfType<OverwormsGameManager>();
         gameManager.MaxTurnTime = this.matchSettings.turnTime;
         gameManager.StartGame();
-        SceneManager.sceneLoaded -= this.OnGameSceneLoaded;
     }
 
     public bool AreTeamsValid()

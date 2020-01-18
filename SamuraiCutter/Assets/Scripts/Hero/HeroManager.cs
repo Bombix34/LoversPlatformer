@@ -11,7 +11,7 @@ public class HeroManager : ObjectManager
     protected Rigidbody2D m_body;
 
     [SerializeField]
-    private bool m_debugTest;
+    private bool m_debugTest = false;
 
     protected PlayerInputManager m_input;
     protected HeroMovement m_movement;

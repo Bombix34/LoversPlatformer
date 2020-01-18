@@ -8,6 +8,9 @@ public class HeroManager : ObjectManager
     protected HeroSettings m_settings;
 
     [SerializeField]
+    protected Rigidbody2D m_body;
+
+    [SerializeField]
     private bool m_debugTest;
 
     protected PlayerInputManager m_input;
@@ -49,7 +52,7 @@ public class HeroManager : ObjectManager
         UpdateMovement();
     }
 
-    public void UpdateInput()
+    public void UpdateMovementInput()
     {
         m_inputMovement = new Vector2(m_input.GetMovementInputX(), m_input.GetMovementInputY());
         if (m_input.GetJumpInput() && m_isJumpInputRelease)
@@ -87,6 +90,16 @@ public class HeroManager : ObjectManager
     public HeroSettings Settings
     {
         get=> m_settings;
+    }
+
+    public PlayerInputManager Inputs
+    {
+        get => m_input;
+    }
+
+    public Rigidbody2D Body
+    {
+        get => m_body;
     }
 
     #endregion

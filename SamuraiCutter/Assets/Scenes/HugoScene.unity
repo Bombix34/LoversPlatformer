@@ -388,6 +388,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.533334, y: 8.533334}
   m_EdgeRadius: 0
+--- !u!1 &1705079050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1705079051}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1705079051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705079050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3522144, y: 1.1561282, z: -13.583189}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2230249240369221857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -528,26 +558,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1446552502573973333, guid: 7521ec0b16a95484ab1333ed976ea2c6,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[3]._name
-      value: Skill01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1446552502573973333, guid: 7521ec0b16a95484ab1333ed976ea2c6,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[3]._descriptiveName
-      value: Skill01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1446552502573973333, guid: 7521ec0b16a95484ab1333ed976ea2c6,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[4]._name
-      value: Skill02
-      objectReference: {fileID: 0}
-    - target: {fileID: 1446552502573973333, guid: 7521ec0b16a95484ab1333ed976ea2c6,
-        type: 3}
-      propertyPath: _userData.actions.Array.data[4]._descriptiveName
-      value: Skill02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7521ec0b16a95484ab1333ed976ea2c6, type: 3}

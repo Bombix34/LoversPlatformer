@@ -25,4 +25,8 @@ public class HeroSettings : ScriptableObject
     public float jumpInputTime = 0.35f;
     public bool JumpNuance = false;
     #endregion
+
+
+    [Header("Reglages Skills")]
+    public SkillHeroDatabase skillsDatabase;
 }

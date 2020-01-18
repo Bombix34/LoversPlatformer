@@ -70,11 +70,6 @@ public class PlayerInputManager : MonoBehaviour
         return player.GetButtonUp("Jump");
     }
 
-    /// <summary>
-    /// skill input start with 1 not 0
-    /// </summary>
-    /// <param name="skillNb"></param>
-    /// <returns></returns>
     public bool GetSkillInputDown(int skillNb)
     {
         return player.GetButtonDown("Skill0"+skillNb);

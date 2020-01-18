@@ -119,7 +119,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4284907913313012817}
+      - m_Target: {fileID: 0}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -322,7 +322,6 @@ GameObject:
   - component: {fileID: 4284907913313012823}
   - component: {fileID: 4284907913313012820}
   - component: {fileID: 4284907913313012821}
-  - component: {fileID: 4284907913313012817}
   m_Layer: 5
   m_Name: MatchCanvas
   m_TagString: Untagged
@@ -411,22 +410,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4284907913313012817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284907913313012826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faf8f7b954eb1984cab0ab47a7722d9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundPanel: {fileID: 4284907912833303564}
-  teamPanelPrefab: {fileID: 901259140890339357, guid: 2743f81a8d71ea2499b17f1aeb315ca0,
-    type: 3}
-  matchSettings:
-    turnTime: 10
-    teamNumber: 8
-    heroByTeam: 2

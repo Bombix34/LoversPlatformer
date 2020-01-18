@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class OverwormsGameManager : MonoBehaviour
 {
-    const float MaxTurnTime = 10;
+    public float MaxTurnTime = 10;
 
+    private bool gameStarted = false;
     private bool gameTerminated = false;
     public VictoryCondition victoryCondition = new DefaultVictoryCondition();
     private TeamManager teamManager;
@@ -16,14 +17,12 @@ public class OverwormsGameManager : MonoBehaviour
 
     public HeroManager CurrentHero { get; set; }
 
-    private void Start()
-    {
-        this.teamManager = GetComponent<TeamManager>();
-        this.OnStartGame();
-    }
-
     private void Update()
     {
+        if (!gameStarted)
+        {
+            return;
+        }
         this.CheckTimeLimit();
     }
 
@@ -40,8 +39,9 @@ public class OverwormsGameManager : MonoBehaviour
         this.OnEndTurn();
     }
 
-    private void OnStartGame()
+    public void StartGame()
     {
+        this.teamManager = GetComponent<TeamManager>();
         this.ordonedHeroes = new List<HeroManager>();
         foreach (var team in teamManager.Teams)
         {
@@ -52,6 +52,8 @@ public class OverwormsGameManager : MonoBehaviour
         }
         this.ordonedHeroes = this.ordonedHeroes.OrderBy(a => Guid.NewGuid()).ToList();//Random du piff
         this.NextTurn();
+
+        this.gameStarted = true;
     }
 
     private void OnEndTurn()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MatchManager : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class MatchManager : MonoBehaviour
     public GameObject teamPanelPrefab;
     [Header("Settings")]
     public MatchSettings matchSettings;
-    private List<MatchTeam> matchTeams = new List<MatchTeam>();
+    private List<MatchTeam> matchTeams;
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+        this.matchTeams = new List<MatchTeam>();
         for (int i = 0; i < matchSettings.teamNumber; i++)
         {
             var matchTeam = new MatchTeam($"Team {i}");
@@ -25,13 +28,24 @@ public class MatchManager : MonoBehaviour
 
     public void Play()
     {
-        foreach (var matchTeam in matchTeams)
+        print(this.matchTeams.Count);
+        if (!this.AreTeamsValid())
         {
-            foreach (var item in matchTeam.Heroes)
-            {
-                print(item.name);
-            }
+            return;
         }
+        SceneManager.sceneLoaded += this.OnGameSceneLoaded;
+        SceneManager.LoadScene("GameScene");
+    }
+
+
+    void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        var teamManager = FindObjectOfType<TeamManager>();
+        teamManager.Init(matchTeams);
+        var gameManager = FindObjectOfType<OverwormsGameManager>();
+        gameManager.MaxTurnTime = this.matchSettings.turnTime;
+        gameManager.StartGame();
+        SceneManager.sceneLoaded -= this.OnGameSceneLoaded;
     }
 
     public bool AreTeamsValid()
@@ -44,25 +58,5 @@ public class MatchManager : MonoBehaviour
     {
         return matchTeam.Heroes.Count == this.matchSettings.heroByTeam
             && matchTeam.Heroes.All(h => h != null);
-    }
-}
-
-[System.Serializable]
-public class MatchSettings
-{
-    [Range(10, 120)]
-    public int turnTime = 10;
-    [Range(2, 8)]
-    public int teamNumber = 2;
-    [Range(1, 10)]
-    public int heroByTeam = 1;
-}
-public class MatchTeam
-{
-    public string Name { get; set; }
-    public List<GameObject> Heroes { get; set; } = new List<GameObject>();
-    public MatchTeam(string name)
-    {
-        this.Name = name;
     }
 }

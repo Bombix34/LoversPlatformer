@@ -12,7 +12,7 @@ public class SkillHeroDatabase : ScriptableObject
     [Header("Base de données")]
 
     [SerializeField]
-    private List<SkillManager> m_skills;
+    private List<SkillManager> m_skills = new List<SkillManager>();
 
     public SkillManager GetSkill(int nb)
     {

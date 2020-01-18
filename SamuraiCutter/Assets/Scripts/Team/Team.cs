@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Team
 {
-    public List<HeroManager> Heroes;
+    public List<HeroManager> Heroes = new List<HeroManager>();
     public bool IsAlive 
     {
         get

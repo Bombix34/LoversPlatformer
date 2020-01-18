@@ -28,7 +28,6 @@ public class MatchManager : MonoBehaviour
 
     public void Play()
     {
-        print(this.matchTeams.Count);
         if (!this.AreTeamsValid())
         {
             return;

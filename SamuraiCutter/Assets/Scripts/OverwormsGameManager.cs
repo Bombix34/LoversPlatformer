@@ -14,6 +14,7 @@ public class OverwormsGameManager : MonoBehaviour
 
     private List<HeroManager> ordonedHeroes;
     private float turnStartTime;
+    private CameraManager cameraManager;
 
     public HeroManager CurrentHero { get; set; }
 
@@ -42,6 +43,7 @@ public class OverwormsGameManager : MonoBehaviour
     public void StartGame()
     {
         this.teamManager = GetComponent<TeamManager>();
+        this.cameraManager = Camera.main.GetComponent<CameraManager>();
         this.ordonedHeroes = new List<HeroManager>();
         foreach (var team in teamManager.Teams)
         {
@@ -81,6 +83,7 @@ public class OverwormsGameManager : MonoBehaviour
         }
 
         this.CurrentHero = this.ordonedHeroes[0];
+        this.cameraManager.PrimaryAnchor = this.CurrentHero.transform;
         Debug.Log(CurrentHero);
         this.CurrentHero.ChangeState(new HeroPlayState(this.CurrentHero));
 

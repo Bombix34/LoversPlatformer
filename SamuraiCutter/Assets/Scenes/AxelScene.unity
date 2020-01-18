@@ -483,6 +483,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2230249241000153849, guid: 46137a50e24454548895448b3f52b27c,
         type: 3}
+    - target: {fileID: 6716004511363599179, guid: 27af6bcdd3c95e54cac8a3920b63118e,
+        type: 3}
+      propertyPath: matchSettings.turnTime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27af6bcdd3c95e54cac8a3920b63118e, type: 3}
 --- !u!1001 &2135790995
@@ -645,6 +650,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378468590, guid: cc100c35a7a815c47acc87bf36051d7b, type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc100c35a7a815c47acc87bf36051d7b, type: 3}

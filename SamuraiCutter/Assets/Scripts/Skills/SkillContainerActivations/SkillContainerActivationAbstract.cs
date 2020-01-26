@@ -2,12 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SkillContainerActivationAbstract
+public interface ISkillContainerActivationAbstract
 {
-    public SkillContainer Container { get; set; }
-    public SkillContainerActivationDataAbstract ActivationData { get; set; }
+    void Init(SkillContainer container);
+}
+
+public abstract class SkillContainerActivationAbstract<TActivationData> : ISkillContainerActivationAbstract where TActivationData : SkillContainerActivationDataAbstract
+{
+    public SkillContainer Container { get; private set; }
+    public TActivationData ActivationData { get; protected set; }
+    public List<Skill<TActivationData>> Skills { get; private set; }
+    public SkillContainerActivationAbstract(List<Skill<TActivationData>> skills)
+    {
+        this.Skills = skills;
+    }
+    public virtual void Init(SkillContainer container)
+    {
+        this.Container = container;
+        foreach (var skill in Skills)
+        {
+            skill.Init(this);
+        }
+    }
+
     public void Activate()
     {
-        this.Container.Activate(this.ActivationData);
+
+        this.Container.Activate();
+        foreach (var skill in Skills)
+        {
+            skill.Prepare();
+        }
     }
 }

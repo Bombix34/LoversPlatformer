@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class SkillContainerActivationDataAbstract
 {
-
+    public Vector2 StartPosition { get; set; }
 }

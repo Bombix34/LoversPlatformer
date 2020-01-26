@@ -7,17 +7,27 @@ public class SkillContainerActivationDirectional : SkillContainerActivationDirec
     [SerializeField]
     private float force;
 
-    public SkillContainerActivationDirectional()
+    public SkillContainerActivationDirectional(List<Skill<SkillContainerActivationDataDirectionalForce>> skills, Vector2 startPosition) : base(skills)
     {
         this.ActivationData = new SkillContainerActivationDataDirectionalForce
         {
+            StartPosition = startPosition,
             Force = this.force
         };
     }
-    
-    public void OnClick(Vector2 from, Vector2 to)
+
+    public SkillContainerActivationDirectional(List<Skill<SkillContainerActivationDataDirectionalForce>> skills, Vector2 startPosition, float force) : base(skills)
     {
-        var direction = (to - from).normalized;
+        this.ActivationData = new SkillContainerActivationDataDirectionalForce
+        {
+            StartPosition = startPosition,
+            Force = force
+        };
+    }
+
+    public void OnClick(Vector2 position)
+    {
+        var direction = (position - this.ActivationData.StartPosition).normalized;
         this.ActivationData.Direction = direction;
         this.Activate();
     }
